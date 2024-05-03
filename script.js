@@ -17,41 +17,31 @@ recipeCloseBtn.addEventListener('click', () => {
 });
 
 // Category
-function fetchAllRecipeCategories() {
+async function fetchRecipes() {
     loader.style.display = 'block';
 
-    fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
-        .then(response => response.json())
-        .then(data => {
-            // console.log(data.categories);
-            let html = "";
-            let categories = data.categories;
-            categories.forEach(category => {
-                // console.log(category.idCategory);
-                html += `
-                    <div class = "category-item" data-id = "${category.idCategory}">
-                        <div class = "category-img">
-                            <img src = "${category.strCategoryThumb}" alt = "food">
-                        </div>
-                        <div class = "category-description">
-                        <h3>${category.strCategory}</h3> 
-                        <a href="#" class = "recipe-btn1">Get Recipe</a>
-                        </div>
-                    </div>
+    const recipes = [];
+    for (let i = 0; i < 6; i++) {
+        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/random.php`);
+        const data = await response.json();
+        recipes.push(data.meals[0]);
+    }
+    const recipeHTML = recipes.map(recipe => {
+        return `
+                     <div class = "category-item" data-id = "${recipe.idMeal}">
+                                   <div class = "category-img">
+                                       <img src = "${recipe.strMealThumb}" alt = "food">
+                                   </div>
+                                   <div class = "category-description">
+                                   <h3>${recipe.strMeal}</h3> 
+                                  <a href="#" class = "recipe-btn">Get Recipe</a>
+                                   </div>
+                             </div>
                 `;
-                // <p>${category.strCategoryDescription}</p>
-            })
-            loader.style.display = 'none';
-            recipeCategoriesContainer.innerHTML = html;
-        })
-
-
-} fetchAllRecipeCategories();
-
-
-
-
-
+    }).join('');
+    loader.style.display = 'none';
+    recipeCategoriesContainer.innerHTML = recipeHTML;
+} fetchRecipes()
 
 // get meal list that matches with the ingredients
 function getMealList() {
@@ -102,26 +92,31 @@ function showRecipeResult() {
 
 function getCategoryRecipe(e) {
     e.preventDefault();
-    if (e.target.classList.contains('recipe-btn1')) {
+    if (e.target.classList.contains('recipe-btn')) {
         let categoryItem = e.target.parentElement.parentElement;
         // console.log(categoryItem);
-        fetch(`https://www.themealdb.com/api/json/v1/1/categories.php?i=${categoryItem.dataset.id}`)
+        fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${categoryItem.dataset.id}`)
             .then(response => response.json())
-            .then(data => categoryRecipeModal(data.categories))
+            .then(data =>
+                categoryRecipeModal(data.meals)
+            )
     }
 }
 // category Recipe Modal
-function categoryRecipeModal(category) {
-    category = category[0];
-    console.log(category);
+function categoryRecipeModal(meal) {
+    meal = meal[0];
     let html = `
-    <h2 class = "recipe-title">${category.strCategory}</h2>
+    <h2 class = "recipe-title">${meal.strMeal}</h2>
+        <p class = "recipe-category">${meal.strCategory}</p>
         <div class = "recipe-instruct">
             <h3>Instructions:</h3>
-            <p>${category.strCategoryDescription}</p>
+            <p>${meal.strInstructions}</p>
         </div>
         <div class = "recipe-meal-img">
-            <img src = "${category.strCategoryThumb}" alt = "">
+            <img src = "${meal.strMealThumb}" alt = "">
+        </div>
+        <div class = "recipe-link">
+            <a href = "${meal.strYoutube}" target = "_blank">Watch Video</a>
         </div>
     `
 

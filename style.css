@@ -207,69 +207,6 @@ button {
     }
 }
 
-/* button {
-    appearance: none;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    isolation: isolate;
-}
-
-.button {
-    font-size: 16px;
-    line-height: 1.5;
-    font-weight: 500;
-    height: 40px;
-    width: 240px;
-    border-radius: 9999rem;
-    background: #efefef;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-
-    &>span.text {
-        color: #121212;
-        width: 100%;
-        text-align: left;
-        padding-block: 12px;
-        padding-left: 24px;
-        z-index: 2;
-        transition: all 200ms ease;
-    }
-
-    &>div.overlay {
-        color: #ededed;
-        width: 48px;
-        height: calc(100% - 2px);
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        padding: 12px;
-        border-radius: inherit;
-        background: #242424;
-        position: absolute;
-        top: 0;
-        right: 1px;
-        z-index: 1;
-        transition: all 400ms ease;
-    }
-
-    &:is(:hover, :focus) {
-        &>span.text {
-            color: #ededed;
-        }
-
-        &>div.overlay {
-            width: calc(100% - 2px);
-            transition: width 200ms ease;
-        }
-    }
-} */
-
 /*  */
 .btn {
     font-family: inherit;
@@ -306,22 +243,31 @@ button {
     -o-border-radius: 1rem;
     overflow: hidden;
     box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.79);
-    margin: 2rem 0 1rem;
-    /* height: 350px;
-    width: 250px;
-    border-radius: 1rem;
-    -webkit-border-radius: 1rem;
-    -moz-border-radius: 1rem;
-    -ms-border-radius: 1rem;
-    -o-border-radius: 1rem;
-    overflow-y: scroll;
-    box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.79);
-    margin: 2rem 0; */
+    margin: 2rem 0;
+    /* color: #f0f0f0;
+    --bgc: #ffffff;
+    aspect-ratio: 1/1;
+    border: 1.25rem solid #ffffff;
+    border-radius: 10px;
+    background: linear-gradient(120deg,
+            color-mix(in oklab, var(--bgc), #ffffff 10%) calc(50% - 1px),
+            var(--bar) calc(50% +1px));
+    position: relative;
+    isolation: isolate; */
+
 }
 
-.category-item::-webkit-scrollbar {
-    width: 5px;
-}
+/* .category-item::before {
+    content: "";
+    inset: 1px;
+    position: absolute;
+    z-index: -1;
+    border-radius: 2px;
+    background-color: #07756a;
+    backdrop-filter: blur(4x);
+    box-shadow: inset 1px 1px #07756a, inset -1px -1px #07756a,
+        1px 1px 10px 10px #07756a;
+} */
 
 .category-img img {
     width: 100%;
