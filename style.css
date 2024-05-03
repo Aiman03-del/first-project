@@ -20,8 +20,8 @@ body {
 
 h1 {
     text-decoration: underline 1px #9997;
-    /* font-weight: 900; */
-    font-size: 3.5vw;
+    font-weight: 900;
+    font-size: 8vw;
     position: relative;
     animation: smush 30s linear alternate infinite;
     --as: calc(0.5lh - (1cap- 1ex));
@@ -79,7 +79,7 @@ h1::after {
 #loader {
     display: block;
     position: absolute;
-    top: calc(110% - 53%);
+    top: calc(110% - 40%);
     left: calc(65% - 17%);
 }
 
