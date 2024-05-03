@@ -34,7 +34,7 @@ async function fetchRecipes() {
                                    </div>
                                    <div class = "category-description">
                                    <h3>${recipe.strMeal}</h3> 
-                                  <a href="#" class = "recipe-btn">Get Recipe</a>
+                                  <a href="#" class = "recipe-btn1">Get Recipe</a>
                                    </div>
                              </div>
                 `;
@@ -43,7 +43,7 @@ async function fetchRecipes() {
     recipeCategoriesContainer.innerHTML = recipeHTML;
 } fetchRecipes()
 
-// get meal list that matches with the ingredients
+// get Meal search
 function getMealList() {
     let searchInputTxt = document.getElementById('search-input').value.trim();
     // loading 
@@ -92,7 +92,7 @@ function showRecipeResult() {
 
 function getCategoryRecipe(e) {
     e.preventDefault();
-    if (e.target.classList.contains('recipe-btn')) {
+    if (e.target.classList.contains('recipe-btn1')) {
         let categoryItem = e.target.parentElement.parentElement;
         // console.log(categoryItem);
         fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${categoryItem.dataset.id}`)
